@@ -1,0 +1,102 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import '../styles/global.css';
+
+interface Props {
+  lang?: string;
+  title?: string;
+  description?: string;
+}
+
+const { lang = 'en', title, description } = Astro.props;
+const t = useTranslations(lang as any);
+
+const metaTitle       = title       ?? t('meta.title');
+const metaDescription = description ?? t('meta.description');
+
+const fontUrl   = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap';
+---
+
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{metaTitle}</title>
+  <meta name="description" content={metaDescription} />
+
+  <!-- Font: async, non-render-blocking -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="preload"
+    as="style"
+    href={fontUrl}
+    onload="this.onload=null;this.rel='stylesheet'"
+  />
+  <noscript><link rel="stylesheet" href={fontUrl} /></noscript>
+
+  <!-- Preconnect + preload video for faster hero load -->
+  <link rel="preconnect" href="https://www.pexels.com" />
+  <link rel="preload" as="video" href="https://www.pexels.com/download/video/5595352/" type="video/mp4" />
+</head>
+<body>
+  <slot />
+
+  <!-- Deferred JS — never blocks render -->
+  <script>
+    // Nav scroll
+    const nav   = document.getElementById('nav')!;
+    const logo  = document.getElementById('nav-logo')!;
+    const dot   = document.getElementById('nav-dot')!;
+    const cta   = document.getElementById('nav-cta')!;
+    const links = document.querySelectorAll<HTMLElement>('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      const s = window.scrollY > 60;
+      nav.style.background     = s ? 'rgba(255,255,255,.97)' : 'transparent';
+      nav.style.backdropFilter = s ? 'blur(12px)' : 'none';
+      nav.style.boxShadow      = s ? '0 1px 0 rgba(27,42,74,.08)' : 'none';
+      nav.style.paddingTop     = s ? '16px' : '28px';
+      nav.style.paddingBottom  = s ? '16px' : '28px';
+      logo.style.color         = s ? '#1B2A4A' : '#fff';
+      dot.style.color          = s ? '#4A7FA5' : '#A8C5DA';
+      cta.style.background     = s ? '#1B2A4A' : 'rgba(255,255,255,.10)';
+      cta.style.color          = '#fff';
+      cta.style.borderColor    = s ? '#1B2A4A' : 'rgba(255,255,255,.30)';
+      links.forEach(l => (l.style.color = s ? '#2C3A4A' : 'rgba(255,255,255,.8)'));
+    }, { passive: true });
+
+    // Reveal on scroll
+    const obs = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // Fade hero video in once it starts playing
+    const hv = document.getElementById('hero-video') as HTMLVideoElement | null;
+    if (hv) {
+      const show = () => { hv.classList.add('video-ready'); };
+      if (hv.readyState >= 3) show();
+      else hv.addEventListener('canplay', show, { once: true });
+    }
+
+    // Contact form — Netlify
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (form) {
+      form.addEventListener('submit', e => {
+        e.preventDefault();
+        fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(new FormData(form) as any).toString(),
+        }).catch(() => {});
+        const success = document.getElementById('form-success');
+        if (success) success.classList.remove('hidden');
+        form.reset();
+      });
+    }
+  </script>
+</body>
+</html>

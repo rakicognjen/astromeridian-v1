@@ -1,0 +1,71 @@
+---
+interface Props {
+  t: (key: string) => string;
+  lang: string;
+}
+const { t, lang } = Astro.props;
+const base = lang === 'en' ? '' : `/${lang}`;
+const poster = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=60&fm=webp';
+---
+
+<footer class="relative overflow-hidden py-16">
+
+  <video id="footer-video" autoplay muted loop playsinline preload="none" poster={poster}>
+    <source src="https://www.pexels.com/download/video/5595352/" type="video/mp4" />
+    <track kind="captions" srclang={lang} label={lang} />
+  </video>
+  <div class="footer-overlay absolute"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6">
+
+    <!-- Three columns -->
+    <div class="grid sm-grid-3 gap-10 pb-10 mb-10 border-b border-powder-12">
+
+      <div>
+        <div class="text-white font-extrabold mb-3 tracking-tight" style="font-size:1.3rem;">
+          Meridian<span class="text-powder font-light">.</span>
+        </div>
+        <p class="text-sm leading-7 max-w-220 text-w40">{t('footer.tagline')}</p>
+      </div>
+
+      <div>
+        <div class="text-xs font-bold uppercase tracking-w3 mb-4 text-powder-60">{t('footer.services')}</div>
+        <ul class="space-y list-none">
+          <li><a href={`${base}/#services`} class="text-sm no-underline trans-color hover-white text-w45">{t('footer.s1')}</a></li>
+          <li><a href={`${base}/#services`} class="text-sm no-underline trans-color hover-white text-w45">{t('footer.s2')}</a></li>
+          <li><a href={`${base}/#services`} class="text-sm no-underline trans-color hover-white text-w45">{t('footer.s3')}</a></li>
+          <li><a href={`${base}/#services`} class="text-sm no-underline trans-color hover-white text-w45">{t('footer.s4')}</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="text-xs font-bold uppercase tracking-w3 mb-4 text-powder-60">{t('footer.contact')}</div>
+        <ul class="space-y list-none">
+          <li class="text-sm text-w40">24 Industrial Way, London E16 2AB</li>
+          <li>
+            <a href={`tel:${t('contact.phone.value').replace(/\s/g,'')}`}
+               class="text-sm no-underline trans-color hover-white text-w45">
+              {t('contact.phone.value')}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${t('contact.email.value')}`}
+               class="text-sm no-underline trans-color hover-white text-w45">
+              {t('contact.email.value')}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="flex flex-col sm-row sm-items-center justify-between gap-4">
+      <p class="text-xs text-w22">{t('footer.legal')}</p>
+      <div class="flex gap-6">
+        <a href="#" class="text-xs no-underline trans-color hover-w70 text-w28">{t('footer.privacy')}</a>
+        <a href="#" class="text-xs no-underline trans-color hover-w70 text-w28">{t('footer.terms')}</a>
+      </div>
+    </div>
+
+  </div>
+</footer>

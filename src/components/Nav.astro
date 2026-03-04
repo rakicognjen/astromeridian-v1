@@ -1,0 +1,33 @@
+---
+interface Props {
+  t: (key: string) => string;
+  lang: string;
+}
+const { t, lang } = Astro.props;
+
+// Build locale-aware hrefs
+const base = lang === 'en' ? '' : `/${lang}`;
+---
+
+<nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-7">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+
+    <a href={`${base}/`} id="nav-logo" class="no-underline trans-color"
+       style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-.01em;">
+      Meridian<span id="nav-dot" style="color:#A8C5DA;font-weight:300;">.</span>
+    </a>
+
+    <div class="md-flex hidden items-center gap-8">
+      <a href={`${base}/#services`} class="nav-link no-underline text-xs uppercase tracking-wider font-medium trans-color hover-white" style="color:rgba(255,255,255,.8);">{t('nav.services')}</a>
+      <a href={`${base}/#projects`} class="nav-link no-underline text-xs uppercase tracking-wider font-medium trans-color hover-white" style="color:rgba(255,255,255,.8);">{t('nav.projects')}</a>
+      <a href={`${base}/#process`}  class="nav-link no-underline text-xs uppercase tracking-wider font-medium trans-color hover-white" style="color:rgba(255,255,255,.8);">{t('nav.process')}</a>
+      <a href={`${base}/#contact`}  class="nav-link no-underline text-xs uppercase tracking-wider font-medium trans-color hover-white" style="color:rgba(255,255,255,.8);">{t('nav.contact')}</a>
+    </div>
+
+    <a href={`${base}/#contact`} id="nav-cta"
+       class="no-underline text-xs font-bold uppercase tracking-w1 rounded px-5 py-2h trans-color"
+       style="background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.30);">
+      {t('nav.cta')}
+    </a>
+  </div>
+</nav>

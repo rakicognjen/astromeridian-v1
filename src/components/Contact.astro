@@ -1,0 +1,146 @@
+---
+interface Props {
+  t: (key: string) => string;
+}
+const { t } = Astro.props;
+
+const phoneRaw  = t('contact.phone.value');
+const emailRaw  = t('contact.email.value');
+const phoneHref = `tel:${phoneRaw.replace(/\s/g, '')}`;
+const emailHref = `mailto:${emailRaw}`;
+---
+
+<section id="contact" class="py-24" style="background:#111D33;">
+  <div class="max-w-6xl mx-auto px-6">
+
+    <!-- Top row: info box + CTA copy -->
+    <div class="grid md-grid-2 gap-8">
+
+      <!-- Info box -->
+      <div class="contact-box bg-accent rounded reveal">
+        <div class="text-white font-extrabold tracking-tight mb-8" style="font-size:1.4rem;">
+          Meridian<span class="font-light opacity-60">.</span>
+        </div>
+
+        <div class="info-row flex gap-4 items-start py-4">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-w4 mb-1 text-w50">{t('contact.address.label')}</div>
+            <div class="text-white text-sm leading-relaxed">{t('contact.address.value')}</div>
+          </div>
+        </div>
+
+        <div class="info-row flex gap-4 items-start py-4">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.08 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/>
+          </svg>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-w4 mb-1 text-w50">{t('contact.phone.label')}</div>
+            <a href={phoneHref} class="text-sm no-underline trans-opacity hover-white" style="color:rgba(255,255,255,.9);">{phoneRaw}</a>
+          </div>
+        </div>
+
+        <div class="info-row flex gap-4 items-start py-4">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-w4 mb-1 text-w50">{t('contact.email.label')}</div>
+            <a href={emailHref} class="text-sm no-underline trans-opacity hover-white" style="color:rgba(255,255,255,.9);">{emailRaw}</a>
+          </div>
+        </div>
+
+        <div class="info-row flex gap-4 items-start py-4">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12,6 12,12 16,14"/>
+          </svg>
+          <div>
+            <div class="text-xs font-bold uppercase tracking-w4 mb-1 text-w50">{t('contact.hours.label')}</div>
+            <div class="text-white text-sm">{t('contact.hours.value')}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA copy -->
+      <div class="flex flex-col justify-center reveal d1 cta-copy">
+        <span class="text-xs font-bold uppercase tracking-w3 mb-3 block text-powder-mid">{t('contact.tag')}</span>
+        <h2 class="text-fh2 text-white font-extrabold leading-tight tracking-tight mb-5">
+          {t('contact.heading')}
+        </h2>
+        <p class="text-base leading-relaxed max-w-sm text-w55">
+          {t('contact.sub')}
+        </p>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <div class="pt-14 reveal d2">
+      <form name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" id="contact-form">
+        <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="bot-field" />
+
+        <div id="form-success" class="hidden rounded px-4 py-3 mb-5 text-sm bg-powder-10 border border-powder-35 text-powder">
+          {t('form.success')}
+        </div>
+
+        <div class="grid sm-grid-2 gap-4 mb-4">
+          <div>
+            <label for="f-name" class="block text-xs font-bold uppercase tracking-w4 mb-2 text-w45">{t('form.name')}</label>
+            <input id="f-name" name="name" type="text" required autocomplete="name" placeholder={t('form.name.ph')}
+              class="cta-input w-full rounded px-4 py-3 text-sm text-white bg-white-6 border border-powder-20 trans-color" />
+          </div>
+          <div>
+            <label for="f-company" class="block text-xs font-bold uppercase tracking-w4 mb-2 text-w45">{t('form.company')}</label>
+            <input id="f-company" name="company" type="text" autocomplete="organization" placeholder={t('form.company.ph')}
+              class="cta-input w-full rounded px-4 py-3 text-sm text-white bg-white-6 border border-powder-20 trans-color" />
+          </div>
+          <div>
+            <label for="f-phone" class="block text-xs font-bold uppercase tracking-w4 mb-2 text-w45">{t('form.phone')}</label>
+            <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder={t('form.phone.ph')}
+              class="cta-input w-full rounded px-4 py-3 text-sm text-white bg-white-6 border border-powder-20 trans-color" />
+          </div>
+          <div>
+            <label for="f-email" class="block text-xs font-bold uppercase tracking-w4 mb-2 text-w45">{t('form.email')}</label>
+            <input id="f-email" name="email" type="email" required autocomplete="email" placeholder={t('form.email.ph')}
+              class="cta-input w-full rounded px-4 py-3 text-sm text-white bg-white-6 border border-powder-20 trans-color" />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label for="f-type" class="block text-xs font-bold uppercase tracking-w4 mb-2 text-w45">{t('form.type')}</label>
+          <select id="f-type" name="project_type"
+            class="cta-input w-full rounded px-4 py-3 text-sm text-white bg-white-6 border border-powder-20 trans-color">
+            <option value="" style="background:#111D33;">{t('form.type.ph')}</option>
+            <option style="background:#111D33;">{t('form.type.opt1')}</option>
+            <option style="background:#111D33;">{t('form.type.opt2')}</option>
+            <option style="background:#111D33;">{t('form.type.opt3')}</option>
+            <option style="background:#111D33;">{t('form.type.opt4')}</option>
+            <option style="background:#111D33;">{t('form.type.opt5')}</option>
+            <option style="background:#111D33;">{t('form.type.opt6')}</option>
+          </select>
+        </div>
+
+        <div class="mb-6">
+          <label for="f-msg" class="block text-xs font-bold uppercase tracking-w4 mb-2 text-w45">{t('form.message')}</label>
+          <textarea id="f-msg" name="message" rows={4} placeholder={t('form.message.ph')}
+            class="cta-input w-full rounded px-4 py-3 text-sm text-white bg-white-6 border border-powder-20 resize-none trans-color"></textarea>
+        </div>
+
+        <div class="flex flex-col sm-row sm-items-center gap-5">
+          <button type="submit"
+            class="inline-block font-bold text-xs uppercase tracking-w1 rounded px-9 py-4 border-none cursor-pointer trans-color hover-powder-mid"
+            style="background:#fff;color:#111D33;">
+            {t('form.submit')}
+          </button>
+          <p class="text-xs leading-relaxed text-w30">{t('form.note')}</p>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</section>

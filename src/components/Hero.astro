@@ -1,0 +1,75 @@
+---
+interface Props {
+  t: (key: string) => string;
+  lang: string;
+}
+const { t, lang } = Astro.props;
+const base = lang === 'en' ? '' : `/${lang}`;
+---
+
+<section id="hero" class="relative min-h-screen flex items-end overflow-hidden">
+
+  <video id="hero-video" autoplay muted loop playsinline preload="auto" fetchpriority="high">
+    <source src="https://www.pexels.com/download/video/5595352/" type="video/mp4" />
+    <track kind="captions" srclang={lang} label={lang} />
+  </video>
+  <div class="hero-overlay absolute"></div>
+
+  <div class="relative z-10 w-full pb-20">
+    <div class="max-w-6xl mx-auto px-6">
+
+      <!-- Eyebrow -->
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-9 h-px opacity-70" style="background:#A8C5DA;"></div>
+        <span class="text-xs font-semibold uppercase tracking-w2 text-powder-85">{t('hero.eyebrow')}</span>
+      </div>
+
+      <!-- H1 -->
+      <h1 class="text-fh text-white font-extrabold leading-tight tracking-tight mb-6">
+        {t('hero.heading')}
+      </h1>
+
+      <!-- Sub -->
+      <p class="text-lg font-light leading-relaxed mb-11 max-w-lg text-w65">
+        {t('hero.sub')}
+      </p>
+
+      <!-- CTA -->
+      <div class="mb-20">
+        <a href={`${base}/#contact`}
+           class="inline-block no-underline font-bold text-xs uppercase tracking-w1 rounded px-9 py-4 trans-color hover-powder-pale"
+           style="background:#fff;color:#111D33;">
+          {t('hero.cta')}
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-2 sm-grid-4 gap-8 max-w-xl">
+        <div class="stat-card pt-4 reveal">
+          <div class="text-stat text-white font-extrabold leading-none tracking-tight">
+            {t('hero.stat1.num').replace(/[+%£]/g, '')}
+            <span class="text-stat-sup text-powder font-light">{t('hero.stat1.num').replace(/[^+%£]/g, '')}</span>
+          </div>
+          <div class="text-xs uppercase tracking-w1 mt-1 text-w55">{t('hero.stat1.label')}</div>
+        </div>
+        <div class="stat-card pt-4 reveal d1">
+          <div class="text-stat text-white font-extrabold leading-none tracking-tight">
+            100<span class="text-stat-sup text-powder font-light">+</span>
+          </div>
+          <div class="text-xs uppercase tracking-w1 mt-1 text-w55">{t('hero.stat2.label')}</div>
+        </div>
+        <div class="stat-card pt-4 reveal d2">
+          <div class="text-stat-sm text-white font-extrabold leading-none tracking-tight">{t('hero.stat3.num')}</div>
+          <div class="text-xs uppercase tracking-w1 mt-1 text-w55">{t('hero.stat3.label')}</div>
+        </div>
+        <div class="stat-card pt-4 reveal d3">
+          <div class="text-stat text-white font-extrabold leading-none tracking-tight">
+            98<span class="text-stat-sup text-powder font-light">%</span>
+          </div>
+          <div class="text-xs uppercase tracking-w1 mt-1 text-w55">{t('hero.stat4.label')}</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
