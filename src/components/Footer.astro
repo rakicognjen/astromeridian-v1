@@ -5,12 +5,12 @@ interface Props {
 }
 const { t, lang } = Astro.props;
 const base = lang === 'en' ? '' : `/${lang}`;
-const poster = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=60&fm=webp';
+// const poster = 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=60&fm=webp';
 ---
 
 <footer class="relative overflow-hidden py-16">
 
-  <video id="footer-video" autoplay muted loop playsinline preload="none" poster={poster}>
+  <video id="footer-video" autoplay muted loop playsinline preload="none">
     <source src="/videos/video-background.webm" type="video/webm" />
     <track kind="captions" srclang={lang} label={lang} />
   </video>
