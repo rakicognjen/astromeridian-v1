@@ -36,9 +36,8 @@ const fontUrl   = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wg
   />
   <noscript><link rel="stylesheet" href={fontUrl} /></noscript>
 
-  <!-- Preconnect + preload video for faster hero load -->
-  <link rel="preconnect" href="https://www.pexels.com" />
-  <link rel="preload" as="video" href="https://www.pexels.com/download/video/5595352/" type="video/mp4" />
+  <!-- Preload local video for faster hero load -->
+  <link rel="preload" as="video" href="/videos/video-background.webm" type="video/webm" />
 </head>
 <body>
   <slot />
