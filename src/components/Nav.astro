@@ -60,7 +60,12 @@ const base = lang === 'en' ? '' : `/${lang}`;
     background-color: rgba(17, 29, 51, 0.92);
   }
 
+  #nav-cta {
+    display: none;
+  }
+
   @media (min-width: 768px) {
+    #nav-cta { display: inline-flex; }
     .cta-lang-wrap { flex-direction: row-reverse; }
   }
 </style>
