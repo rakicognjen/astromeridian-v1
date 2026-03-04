@@ -10,8 +10,8 @@ export type Lang = keyof typeof languages;
 export const ui = {
   en: {
     // Meta
-    'meta.title':       'Meridian Build | Construction Excellence',
-    'meta.description': 'High-quality construction through expert planning, skilled craftsmanship, and dependable execution.',
+    'meta.title':       'CEBAC | Council of European Business Associations and Chambers in Serbia',
+    'meta.description': 'CEBAC unites European business associations and bilateral chambers in Serbia to improve the legal and business framework, strengthen investment attractiveness, and enhance Serbia-EU trade cooperation.',
 
     // Nav
     'nav.services': 'Services',
@@ -84,8 +84,8 @@ export const ui = {
   },
 
   de: {
-    'meta.title':       'Meridian Build | Bauexzellenz',
-    'meta.description': 'Hochwertige Bauleistungen durch Expertenplanung, handwerkliches Können und zuverlässige Ausführung.',
+    'meta.title':       'CEBAC | Rat europaischer Wirtschaftsverbande und Kammern in Serbien',
+    'meta.description': 'CEBAC vereint europaische Wirtschaftsverbande und bilaterale Kammern in Serbien, um das rechtliche und wirtschaftliche Umfeld zu verbessern, die Investitionsattraktivitat zu starken und die Handelsbeziehungen mit der EU auszubauen.',
     'nav.services': 'Leistungen',
     'nav.projects': 'Projekte',
     'nav.process':  'Prozess',
@@ -135,8 +135,8 @@ export const ui = {
   },
 
   fr: {
-    'meta.title':       'Meridian Build | Excellence en Construction',
-    'meta.description': 'Construction de haute qualité grâce à une planification experte, un savoir-faire et une exécution fiable.',
+    'meta.title':       'CEBAC | Conseil des associations et chambres de commerce europeennes en Serbie',
+    'meta.description': "CEBAC rassemble des associations professionnelles europeennes et des chambres bilaterales en Serbie afin d'ameliorer le cadre legal et economique, renforcer l'attractivite des investissements et developper les echanges avec l'UE.",
     'nav.services': 'Services',
     'nav.projects': 'Projets',
     'nav.process':  'Processus',
@@ -178,8 +178,8 @@ export const ui = {
   },
 
   sr: {
-    'meta.title':       'Meridian Build | Građevinska Izvrsnost',
-    'meta.description': 'Visokokvalitetna gradnja kroz stručno planiranje, vešto izvođenje i pouzdanu realizaciju.',
+    'meta.title':       'CEBAC | Savet evropskih poslovnih udruzenja i komora u Srbiji',
+    'meta.description': 'CEBAC okuplja evropska poslovna udruzenja i bilateralne komore u Srbiji radi unapredjenja pravnog i poslovnog okvira, jacanja investicione atraktivnosti i razvoja trgovinske saradnje Srbije i EU.',
     'nav.services': 'Usluge',
     'nav.projects': 'Projekti',
     'nav.process':  'Proces',
