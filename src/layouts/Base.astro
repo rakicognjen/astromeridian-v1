@@ -1,6 +1,6 @@
 ---
 import { getLangFromUrl, useTranslations } from '../i18n/utils';
-import '../styles/global.css';
+import globalCss from '../styles/global.css?inline';
 
 interface Props {
   lang?: string;
@@ -35,6 +35,7 @@ const fontUrl   = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wg
     onload="this.onload=null;this.rel='stylesheet'"
   />
   <noscript><link rel="stylesheet" href={fontUrl} /></noscript>
+  <style is:global set:html={globalCss}></style>
 
   <!-- Preload local video for faster hero load -->
   <link rel="preload" as="video" href="/videos/video-background.webm" type="video/webm" />
