@@ -12,9 +12,11 @@ const base = lang === 'en' ? '' : `/${lang}`;
 <nav id="nav" class="fixed top-0 left-0 right-0 z-50 py-7">
   <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
 
-    <a href={`${base}/`} id="nav-logo" class="no-underline trans-color"
-       style="font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:-.01em;">
+    <a href={`${base}/`} id="nav-logo" class="no-underline trans-color inline-block" aria-label="Cebac Home">
+      <!-- Previous text logo kept for reference:
       Meridian<span id="nav-dot" style="color:#A8C5DA;font-weight:300;">.</span>
+      -->
+      <img src="/cebac-logo.png" alt="Cebac logo" style="height:34px;width:auto;display:block;" />
     </a>
 
     <div class="md-flex hidden items-center gap-8">

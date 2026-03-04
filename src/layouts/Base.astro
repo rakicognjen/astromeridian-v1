@@ -48,11 +48,12 @@ const fontUrl   = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wg
     // Nav scroll
     const nav   = document.getElementById('nav')!;
     const logo  = document.getElementById('nav-logo')!;
-    const dot   = document.getElementById('nav-dot')!;
+    const logoImg = document.querySelector<HTMLImageElement>('#nav-logo img');
+    const dot   = document.getElementById('nav-dot');
     const cta   = document.getElementById('nav-cta')!;
     const links = document.querySelectorAll<HTMLElement>('.nav-link');
 
-    window.addEventListener('scroll', () => {
+    const applyNavState = () => {
       const s = window.scrollY > 60;
       nav.style.background     = s ? 'rgba(255,255,255,.97)' : 'transparent';
       nav.style.backdropFilter = s ? 'blur(12px)' : 'none';
@@ -60,12 +61,15 @@ const fontUrl   = 'https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wg
       nav.style.paddingTop     = s ? '16px' : '28px';
       nav.style.paddingBottom  = s ? '16px' : '28px';
       logo.style.color         = s ? '#1B2A4A' : '#fff';
-      dot.style.color          = s ? '#4A7FA5' : '#A8C5DA';
+      if (logoImg) logoImg.src = s ? '/cebac-logo-dark.png' : '/cebac-logo.png';
+      if (dot) dot.style.color = s ? '#4A7FA5' : '#A8C5DA';
       cta.style.background     = s ? '#1B2A4A' : 'rgba(255,255,255,.10)';
       cta.style.color          = '#fff';
       cta.style.borderColor    = s ? '#1B2A4A' : 'rgba(255,255,255,.30)';
       links.forEach(l => (l.style.color = s ? '#2C3A4A' : 'rgba(255,255,255,.8)'));
-    }, { passive: true });
+    };
+    applyNavState();
+    window.addEventListener('scroll', applyNavState, { passive: true });
 
     // Reveal on scroll
     const obs = new IntersectionObserver(
