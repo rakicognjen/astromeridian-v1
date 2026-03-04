@@ -59,6 +59,18 @@ const base = lang === 'en' ? '' : `/${lang}`;
 </nav>
 
 <style>
+  #nav-lang,
+  #nav-lang-mobile {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
+  #nav-lang option,
+  #nav-lang-mobile option {
+    color: #fff;
+    background-color: rgba(17, 29, 51, 0.92);
+  }
+
   @media (min-width: 768px) {
     .mobile-lang { display: none; }
   }
